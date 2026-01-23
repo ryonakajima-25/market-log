@@ -2,57 +2,86 @@
 
 /* 1. アプリ全体の背景と基本文字色 */
 .stApp {
-    background-color: #ffffff;
-    color: #333333;
+    background-color: #0e1117; /* ダーク背景 */
+    color: #fafafa; /* 白文字 */
 }
 
-/* 基本的なテキスト要素の文字色を指定（!importantは外して柔軟性を持たせる） */
+/* 基本テキストを白に設定 */
 p, div, span, label, li, h1, h2, h3, h4, h5, h6 {
-    color: #333333;
+    color: #fafafa;
 }
 
-/* 2. 見出しのデザイン（少し強調） */
+/* 2. 見出しのデザイン */
 h1, h2, h3 {
-    color: #1E3A8A; /* 濃い青 */
+    color: #60A5FA !important; /* 明るめの青 */
     font-weight: bold;
 }
 
 /* 3. メトリクス（数値表示）のデザイン */
 [data-testid="stMetric"] {
-    background-color: #f9fafb; /* 薄いグレー背景 */
+    background-color: #1f2937; /* ダークグレー背景 */
     padding: 15px;
     border-radius: 10px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #374151;
 }
 
 [data-testid="stMetricLabel"] {
-    color: #6B7280 !important; /* ラベルは少し淡いグレー */
+    color: #9CA3AF !important; /* ラベルはグレー */
 }
 
 [data-testid="stMetricValue"] {
-    color: #111827 !important; /* 数字は濃い黒 */
+    color: #F3F4F6 !important; /* 数字は明るい白 */
 }
 
-/* --- 【重要修正】検索ボックスとドロップダウン対策 --- */
-
-/* ドロップダウンリストのコンテナ（ポップオーバー） */
-div[data-baseweb="popover"] {
-    background-color: #ffffff !important; /* 背景を白に強制 */
-    border: 1px solid #e5e7eb;
+/* --- 【修正】サイドバーの視認性改善 --- */
+[data-testid="stSidebar"] {
+    background-color: #111827; /* 濃い紺色 */
+    border-right: 1px solid #374151;
 }
 
-/* ドロップダウン内のリストアイテム（文字） */
-/* セレクタを強化して、非ホバー時も確実に黒文字にする */
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] span,
+[data-testid="stSidebar"] p {
+    color: #F3F4F6 !important; /* サイドバーの文字を白く強制 */
+}
+
+/* ラジオボタン選択時の色調整 */
+[data-testid="stSidebar"] [data-baseweb="radio"] div {
+    color: #F3F4F6 !important;
+}
+
+/* --- 【修正】検索ボックス（ドロップダウン）の視認性改善 --- */
+
+/* 入力ボックス自体 */
+div[data-baseweb="select"] > div {
+    background-color: #1f2937 !important;
+    border-color: #4B5563 !important;
+    color: #ffffff !important;
+}
+
+/* ドロップダウンのポップオーバー（候補リストの箱） */
+div[data-baseweb="popover"],
+div[data-baseweb="menu"] {
+    background-color: #1f2937 !important; /* 背景をダークグレーに */
+    border: 1px solid #374151;
+}
+
+/* リストアイテム（文字） */
 div[data-baseweb="popover"] div[role="option"],
 div[data-baseweb="popover"] span,
 div[data-baseweb="popover"] li {
-    color: #333333 !important; /* 文字を黒に強制 */
-    background-color: transparent; /* 背景はコンテナの白を透過させる */
+    color: #F3F4F6 !important; /* 文字を白く強制 */
 }
 
-/* ホバー時（マウスを乗せた時）と選択中のスタイル */
-div[data-baseweb="popover"] div[role="option"][aria-selected="true"],
-div[data-baseweb="popover"] div[role="option"]:hover {
-    background-color: #f3f4f6 !important; /* 薄いグレーのハイライト */
-    color: #000000 !important; /* 文字は真っ黒に */
+/* ホバー時（マウスを乗せた時）のハイライト */
+div[data-baseweb="popover"] div[role="option"]:hover,
+div[data-baseweb="popover"] div[role="option"][aria-selected="true"] {
+    background-color: #374151 !important; /* 選択時は少し明るいグレー */
+    color: #ffffff !important;
+}
+
+/* チャート上のタブ文字色 */
+button[data-baseweb="tab"] {
+    color: #F3F4F6 !important;
 }
