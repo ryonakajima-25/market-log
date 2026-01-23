@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 from views import stock_analysis, market_analysis
 
 # CSS読み込み
@@ -17,8 +18,14 @@ st.sidebar.title("MENU")
 page = st.sidebar.radio("機能を選択", ["市場分析 (Light)", "銘柄分析"])
 
 # APIキー
-API_KEY = st.secrets["JQUANTS_API_KEY"]
+# APIキー読み込み（Renderの環境変数 または ローカルのsecrets.toml）
+API_KEY = os.getenv("JQUANTS_API_KEY")
+if not API_KEY and "JQUANTS_API_KEY" in st.secrets:
+    API_KEY = st.secrets["JQUANTS_API_KEY"]
 
+if not API_KEY:
+    st.error("APIキーが設定されていません。RenderのEnvironment Variablesを設定してください。")
+    st.stop()
 # ルーティング
 if page == "市場分析 (Light)":
     market_analysis.render(API_KEY)
