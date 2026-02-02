@@ -35,11 +35,10 @@ def render(api_key):
     df_hist, err_hist = get_market_history(api_key)
     
     if df_hist is not None:
+        # 【修正】日付型(datetime)のままだとStreamlitが土日を自動補完してしまうため、
+        # 文字列(String)に変換して「ただのラベル」として扱うことで隙間を詰める
+        df_hist['Date'] = df_hist['Date'].dt.strftime('%Y-%m-%d')
         df_hist = df_hist.set_index('Date')
-        
-        # 【デバッグ表示】
-        # もしカラムが Others しかなかったり、想定と違う名前だった場合のために表示
-        # st.write(f"DEBUG: Available Columns: {df_hist.columns.tolist()}")
         
         markets_config = [
             ("Prime", "🟦 プライム市場", "#1976D2"),
