@@ -141,10 +141,10 @@ def main():
             diff_pct = 0.0
 
         if diff_pct > 0:
-            diff_color = "#FF4B4B" # 赤
+            diff_color = "#EB5757" # 赤
             diff_text = f"（前日比 +{diff_pct:.1f}%）"
         elif diff_pct < 0:
-            diff_color = "#33CCFF" # 蛍光青
+            diff_color = "#2EB0F3" # 蛍光青
             diff_text = f"（前日比 {diff_pct:.1f}%）"
         else:
             diff_color = "#CCCCCC"

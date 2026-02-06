@@ -2,7 +2,7 @@
 
 /* 1. アプリ全体の背景と基本文字色 */
 .stApp {
-    background-color: #0e1117; /* ダーク背景 */
+    background-color: #121212; /* ダーク背景 */
     color: #fafafa; /* 白文字 */
 }
 
@@ -13,13 +13,13 @@ p, div, span, label, li, h1, h2, h3, h4, h5, h6 {
 
 /* 2. 見出しのデザイン */
 h1, h2, h3 {
-    color: #60A5FA !important; /* 明るめの青 */
+    color: #2EB0F3 !important; /* 明るめの青 */
     font-weight: bold;
 }
 
 /* 3. メトリクス（数値表示）のデザイン */
 [data-testid="stMetric"] {
-    background-color: #1f2937; /* ダークグレー背景 */
+    background-color: #121212; /* ダークグレー背景 */
     padding: 15px;
     border-radius: 10px;
     border: 1px solid #374151;
@@ -63,7 +63,7 @@ div[data-baseweb="select"] > div {
 /* ドロップダウンのポップオーバー（候補リストの箱） */
 div[data-baseweb="popover"],
 div[data-baseweb="menu"] {
-    background-color: #1f2937 !important; /* 背景をダークグレーに */
+    background-color: #121212 !important; /* 背景をダークグレーに */
     border: 1px solid #374151;
 }
 
@@ -77,7 +77,7 @@ div[data-baseweb="popover"] li {
 /* ホバー時（マウスを乗せた時）のハイライト */
 div[data-baseweb="popover"] div[role="option"]:hover,
 div[data-baseweb="popover"] div[role="option"][aria-selected="true"] {
-    background-color: #374151 !important; /* 選択時は少し明るいグレー */
+    background-color: #1E1E1E !important; /* 選択時は少し明るいグレー */
     color: #ffffff !important;
 }
 
