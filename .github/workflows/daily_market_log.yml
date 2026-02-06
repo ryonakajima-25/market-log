@@ -1,0 +1,35 @@
+name: Daily Market Data Update
+
+on:
+  schedule:
+    # 毎日 17:00 JST に実行
+    # GitHub Actions は UTC基準 なので、17:00 JST = 08:00 UTC を指定します
+    # 分 時 日 月 曜日 (1-5 = 月-金)
+    - cron: '0 8 * * 1-5'
+  
+  # 手動でも実行できるようにするボタン
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v3
+
+      - name: Pythonのセットアップ
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: ライブラリのインストール
+        run: |
+          pip install pandas requests sqlalchemy psycopg2-binary python-dotenv
+
+      - name: デイリー更新スクリプトの実行
+        env:
+          # GitHubのSettings > Secretsで設定したキーを読み込む
+          JQUANTS_API_KEY: ${{ secrets.JQUANTS_API_KEY }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: python daily_update.py
